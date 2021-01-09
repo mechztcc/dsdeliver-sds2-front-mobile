@@ -5,6 +5,7 @@ import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fo
 
 import Header from './src/Header/index';
 import AppLoading from 'expo-app-loading';
+import Home from './src/Home';
 
 export default function App() {
 
@@ -18,8 +19,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Header />
       <StatusBar style="light" />
+      <Header />
+      <Home />
     </View>
   );
 }
