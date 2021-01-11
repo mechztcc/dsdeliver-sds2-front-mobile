@@ -1,18 +1,36 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
-function OrderCard() {
+import { Text, View, StyleSheet } from 'react-native';
+import { Order } from '../types';
+
+dayjs.locale('pt-br');
+dayjs.extend(relativeTime)
+
+type Props = {
+    order: Order;
+}
+
+function dateFromNow(date: string) {
+    return dayjs(date).fromNow();
+}
+
+function OrderCard({ order }: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.orderName}>Pedido 1</Text>
-                <Text style={styles.orderPrice}>R$ 33,00</Text>
+                <Text style={styles.orderName}>Pedido {order.id}</Text>
+                <Text style={styles.orderPrice}>R$ TOTAL</Text>
             </View>
-            <Text style={styles.text}>Hà 30 min.</Text>
+            <Text style={styles.text}>{dateFromNow(order.moment)}</Text>
             <View style={styles.productsList}>
-                <Text style={styles.text}>Pizza calabresa</Text>
-                <Text style={styles.text}>Pizza margerita</Text>
-                <Text style={styles.text}>Pizza frango</Text>
+                
+               {order.products.map(product => (
+                    <Text key={product.id} style={styles.text}>{product.name}</Text>
+               ))}
+
             </View>
         </View>
     )
