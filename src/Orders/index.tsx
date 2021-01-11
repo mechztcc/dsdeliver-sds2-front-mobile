@@ -64,6 +64,8 @@ function Orders() {
         </>
     )
 }
+//no maps integration
+
 
 const styles = StyleSheet.create({
     container: {
